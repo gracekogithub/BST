@@ -8,33 +8,40 @@ namespace BSTbigO
 {
     class BST
     {
-        public Node Root;
+        public Node RootNode;
+        public Node ParentNode;
 
         public BST()
         {
-            Root = null;
+            
         }
 
 
         public void AddNode(Node nodeToAdd)
         {
-            if (nodeToAdd !=null)
+            if (RootNode == null)
             {
-                nodeToAdd = new Node(Root.Data);
+                ParentNode = RootNode;
+                RootNode = nodeToAdd;
             }
-           
-            if (nodeToAdd.Data > Root.Data)
+            while (RootNode != null)
             {
-                Root.Right = nodeToAdd;
-                AddNode(Root.Right);
-
+                Node childNode = RootNode;
+                RootNode = childNode;
+                if (nodeToAdd.Data > RootNode.Data)
+                {
+                    RootNode.Right = nodeToAdd;
+                    ParentNode = RootNode.Right;
+                    break;
+                }
+                else
+                {
+                    RootNode.Left = nodeToAdd;
+                    ParentNode = RootNode.Left;
+                    break;
+                }
             }
-            else
-            {
-                Root.Left = nodeToAdd;
-                AddNode(Root.Left);
-            }
-
+            
         }
 
         public bool SearchNode(Node nodeToAdd, int dataToFind)
