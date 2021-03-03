@@ -8,5 +8,13 @@ namespace BSTbigO
 {
     class Node
     {
+        public int Data;
+        public Node Right;
+        public Node Left;
+
+        public Node(int data)
+        {
+            Data = data;
+        }
     }
 }
