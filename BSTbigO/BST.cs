@@ -9,56 +9,70 @@ namespace BSTbigO
     class BST
     {
         public Node RootNode;
-        public Node ParentNode;
+       
 
         public BST()
         {
-            
+            RootNode = null;
         }
 
 
-        public void AddNode(Node nodeToAdd)
+        public void AddNode (int value)
         {
+            Node currentNode = new Node(value);
+
             if (RootNode == null)
             {
-                ParentNode = RootNode;
-                RootNode = nodeToAdd;
+                RootNode = currentNode;
+            }
+            else
+            {
+                AddNode(value);
+
             }
             while (RootNode != null)
             {
-                Node childNode = RootNode;
-                RootNode = childNode;
-                if (nodeToAdd.Data > RootNode.Data)
+                if (value > RootNode.Data)
                 {
-                    RootNode.Right = nodeToAdd;
-                    ParentNode = RootNode.Right;
+                    currentNode = RootNode.LeftNode;
+                    AddNode(currentNode.Data);
+                    
                     break;
                 }
                 else
                 {
-                    RootNode.Left = nodeToAdd;
-                    ParentNode = RootNode.Left;
+                    currentNode = RootNode.RightNode;
+                    AddNode(currentNode.Data);
                     break;
+
                 }
             }
-            
+        
         }
 
-        public bool SearchNode(Node nodeToAdd, int dataToFind)
+        public int SearchNode(int[] array, int dataToFind)
         {
-        
-            if (dataToFind < nodeToAdd.Data)
+            int left = 0;
+            int right = array.Length - 1;
+            while(left <= right)
             {
-                return SearchNode(nodeToAdd.Left, dataToFind);
+                var mid = (left + right) / 2;
+                if (array [mid] == dataToFind)
+                {
+                    dataToFind = mid;
+                }
+                if (dataToFind < array[mid])
+                {
+                    right = mid - 1;
+                }
+                else
+                {
+                    left = mid + 1;
+                }
+             
             }
-            else if (dataToFind > nodeToAdd.Data)
-            {
-                return SearchNode(nodeToAdd.Right, dataToFind);
-            }
-            else
-            {
-                return false;
-            }
+            return -1;
+            
         }
         
     }

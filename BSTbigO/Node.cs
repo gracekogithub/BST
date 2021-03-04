@@ -9,12 +9,15 @@ namespace BSTbigO
     class Node
     {
         public int Data;
-        public Node Right;
-        public Node Left;
+        public Node RightNode;
+        public Node LeftNode;
 
-        public Node(int data)
+        public Node(int value)
         {
-            Data = data;
+            Data = value;
+            RightNode = new Node(value);
+            LeftNode = new Node(value);
         }
+        
     }
 }
