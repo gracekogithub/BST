@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace BSTbigO
 {
-    class Node
+    public class Node
     {
         public int Data;
         public Node RightNode;
         public Node LeftNode;
 
-        public Node(int value)
+       
+        public void Display()
         {
-            Data = value;
-            RightNode = new Node(value);
-            LeftNode = new Node(value);
+            Console.WriteLine(Data + " ");
         }
         
     }

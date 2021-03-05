@@ -9,17 +9,14 @@ namespace BSTbigO
     class BST
     {
         public Node RootNode;
-       
-
         public BST()
         {
             RootNode = null;
         }
-
-
-        public void AddNode (int value)
+        public void AddNode(int value)
         {
-            Node currentNode = new Node(value);
+            Node currentNode = new Node();
+            currentNode.Data = value;
 
             if (RootNode == null)
             {
@@ -27,22 +24,19 @@ namespace BSTbigO
             }
             else
             {
-                AddNode(value);
-
+                Node CurrentNode = RootNode;
+               
             }
             while (RootNode != null)
             {
                 if (value > RootNode.Data)
                 {
-                    currentNode = RootNode.LeftNode;
-                    AddNode(currentNode.Data);
-                    
+                    currentNode = currentNode.LeftNode;
                     break;
                 }
-                else
+                if(value < RootNode.Data)
                 {
                     currentNode = RootNode.RightNode;
-                    AddNode(currentNode.Data);
                     break;
 
                 }
